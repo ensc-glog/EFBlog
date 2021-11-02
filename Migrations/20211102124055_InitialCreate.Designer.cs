@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFGetStarted.Migrations
 {
     [DbContext(typeof(BloggingContext))]
-    [Migration("20211102085250_InitialCreate")]
+    [Migration("20211102124055_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -17,23 +17,23 @@ namespace EFGetStarted.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.11");
 
-            modelBuilder.Entity("EFGetStarted.Blog", b =>
+            modelBuilder.Entity("EFGetStarted.Models.Blog", b =>
                 {
-                    b.Property<int>("BlogId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Url")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("BlogId");
+                    b.HasKey("Id");
 
                     b.ToTable("Blogs");
                 });
 
-            modelBuilder.Entity("EFGetStarted.Post", b =>
+            modelBuilder.Entity("EFGetStarted.Models.Post", b =>
                 {
-                    b.Property<int>("PostId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -46,16 +46,16 @@ namespace EFGetStarted.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("PostId");
+                    b.HasKey("Id");
 
                     b.HasIndex("BlogId");
 
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("EFGetStarted.Post", b =>
+            modelBuilder.Entity("EFGetStarted.Models.Post", b =>
                 {
-                    b.HasOne("EFGetStarted.Blog", "Blog")
+                    b.HasOne("EFGetStarted.Models.Blog", "Blog")
                         .WithMany("Posts")
                         .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -64,7 +64,7 @@ namespace EFGetStarted.Migrations
                     b.Navigation("Blog");
                 });
 
-            modelBuilder.Entity("EFGetStarted.Blog", b =>
+            modelBuilder.Entity("EFGetStarted.Models.Blog", b =>
                 {
                     b.Navigation("Posts");
                 });
