@@ -1,5 +1,5 @@
-using System;
 using Microsoft.EntityFrameworkCore;
+using EFGetStarted.Models;
 
 namespace EFGetStarted
 {
@@ -12,13 +12,10 @@ namespace EFGetStarted
 
         public BloggingContext()
         {
-            var folder = Environment.SpecialFolder.LocalApplicationData;
-            var path = Environment.GetFolderPath(folder);
-            DbPath = $"{path}{System.IO.Path.DirectorySeparatorChar}blogging.db";
+            DbPath = "EFGetStarted.db";
         }
 
-        // The following configures EF to create a Sqlite database file in the
-        // special "local" folder for your platform.
+        // The following configures EF to create a SQLite database file locally
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite($"Data Source={DbPath}");
     }
