@@ -8,33 +8,38 @@ namespace EFGetStarted
     {
         private static void Main()
         {
-            using (var db = new BloggingContext())
+            using (var context = new BloggingContext())
             {
                 // Note: This sample requires the database to be created before running.
-                Console.WriteLine($"Database path: {db.DbPath}.");
+                Console.WriteLine($"Database path: {context.DbPath}.");
 
-                // Create
                 Console.WriteLine("Inserting a new blog");
-                db.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
-                db.SaveChanges();
+                context.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
+                context.SaveChanges();
 
-                // Read
                 Console.WriteLine("Querying for a blog");
-                var blog = db.Blogs
+                var blog = context.Blogs
                     .OrderBy(b => b.Id)
                     .First();
+                Console.WriteLine(blog);
 
-                // Update
                 Console.WriteLine("Updating the blog and adding a post");
                 blog.Url = "https://devblogs.microsoft.com/dotnet";
                 blog.Posts.Add(
                     new Post { Title = "Hello World", Content = "I wrote an app using EF Core!" });
-                db.SaveChanges();
+                context.SaveChanges();
 
-                // Delete
+                Console.WriteLine("Querying with LINQ");
+                var query = from b in context.Blogs
+                            select b;
+                query = query.Where(b => b.Url.Contains("dotnet"));
+                var blogs = query.ToList();
+                foreach (Blog b in blogs)
+                    Console.WriteLine(b);
+
                 Console.WriteLine("Delete the blog");
-                db.Remove(blog);
-                db.SaveChanges();
+                context.Remove(blog);
+                context.SaveChanges();
             }
         }
     }
