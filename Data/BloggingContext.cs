@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 public class BloggingContext : DbContext
 {
     public DbSet<Blog> Blogs { get; set; }
+    public DbSet<RssBlog> RssBlogs { get; set; }
     public DbSet<Post> Posts { get; set; }
 
     public string DbPath { get; private set; }

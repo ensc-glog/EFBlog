@@ -24,4 +24,14 @@
     Console.WriteLine("--- Deleting the blog ---");
     context.Remove(blog);
     context.SaveChanges();
+
+    Console.WriteLine("--- Create an RSS blog ---");
+    var rssBlog = new RssBlog { RssUrl = "https://devblogs.microsoft.com/dotnet/feed/" };
+    rssBlog.Url = "https://devblogs.microsoft.com/dotnet";
+    context.Add(rssBlog);
+    context.SaveChanges();
+
+    Console.WriteLine("--- Deleting the RSS blog ---");
+    context.Remove(rssBlog);
+    context.SaveChanges();
 }
