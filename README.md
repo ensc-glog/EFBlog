@@ -1,5 +1,5 @@
-# EFGetStarted
+# EFBlog
 
-.NET console app demonstrating the basics of Entity Framework Core.
+Application .NET console démontrant le fonctionnement de base d'Entity Framework Core.
 
-Adapted from the [official EF Core documentation](https://docs.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=netcore-cli).
+Adapté de la [documentation officielle EF Core](https://docs.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=netcore-cli).

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace EFGetStarted.Migrations
+namespace EFBlog.Migrations
 {
     public partial class InitialCreate : Migration
     {
@@ -14,7 +14,9 @@ namespace EFGetStarted.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Url = table.Column<string>(type: "TEXT", nullable: true)
+                    Url = table.Column<string>(type: "TEXT", nullable: true),
+                    Discriminator = table.Column<string>(type: "TEXT", nullable: false),
+                    RssUrl = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {

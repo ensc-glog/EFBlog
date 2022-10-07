@@ -12,7 +12,7 @@ public class BloggingContext : DbContext
     public BloggingContext()
     {
         // Path to SQLite database file
-        DbPath = "EFGetStarted.db";
+        DbPath = "EFBlog.db";
     }
 
     // The following configures EF to create a SQLite database file locally

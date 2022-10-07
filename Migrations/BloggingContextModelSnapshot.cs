@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace EFGetStarted.Migrations
+namespace EFBlog.Migrations
 {
     [DbContext(typeof(BloggingContext))]
     partial class BloggingContextModelSnapshot : ModelSnapshot

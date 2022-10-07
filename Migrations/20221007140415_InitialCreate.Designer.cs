@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace EFGetStarted.Migrations
+namespace EFBlog.Migrations
 {
     [DbContext(typeof(BloggingContext))]
-    [Migration("20220928150028_InitialCreate")]
+    [Migration("20221007140415_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,12 +23,18 @@ namespace EFGetStarted.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Url")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.ToTable("Blogs");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Blog");
                 });
 
             modelBuilder.Entity("Post", b =>
@@ -51,6 +57,16 @@ namespace EFGetStarted.Migrations
                     b.HasIndex("BlogId");
 
                     b.ToTable("Posts");
+                });
+
+            modelBuilder.Entity("RssBlog", b =>
+                {
+                    b.HasBaseType("Blog");
+
+                    b.Property<string>("RssUrl")
+                        .HasColumnType("TEXT");
+
+                    b.HasDiscriminator().HasValue("RssBlog");
                 });
 
             modelBuilder.Entity("Post", b =>
